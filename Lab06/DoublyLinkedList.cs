@@ -1,4 +1,6 @@
-public class DoublyLinkedList<T> : IDoubleEndedCollection<T>
+using System.Collections;
+
+public class DoublyLinkedList<T> : IDoubleEndedCollection<T>, IEnumerable<T>
 {
     private DNode<T>? _head = null;
     private DNode<T>? _tail = null;
@@ -141,5 +143,15 @@ public class DoublyLinkedList<T> : IDoubleEndedCollection<T>
         {
             _head = temp.Previous;
         }
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        return new LinkedListEnumerator<T>(_head);
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }
