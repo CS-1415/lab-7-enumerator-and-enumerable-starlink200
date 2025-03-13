@@ -7,31 +7,34 @@
         printIntro();
         do
         {
+            Console.Clear();
             Console.WriteLine("What would you like to do");
             bool validAnswer;
-            string userAnswer;
+            char userAnswer;
             do
             {
                 printOptions();
-                userAnswer = Console.ReadLine();
+                userAnswer = Console.ReadKey(true).KeyChar;
                 validAnswer = ValidateAnswer(userAnswer);
             }
             while(!validAnswer);
             switch (userAnswer)
             {
-                case "f" or "F":
+                case 'f' or 'F':
                     list.AddFirst(AddTo());
                     break;
-                case "e" or "E":
+                case 'e' or 'E':
                     list.AddLast(AddTo());
                     break;
-                case "p" or "P":
+                case 'p' or 'P':
                     foreach(var value in list)
                     {
                         Console.WriteLine(value);
                     }
+                    Console.WriteLine("Press any button to continue");
+                    Console.ReadKey(true);
                     break;
-                case "x" or "X":
+                case 'x' or 'X':
                     keepGoing = false;
                     break;
             }
@@ -58,18 +61,18 @@
         Console.WriteLine("p: print out list");
         Console.WriteLine("x: Exit program");
     }
-    public static bool ValidateAnswer(string userChoice)
+    public static bool ValidateAnswer(char userChoice)
     {
         switch (userChoice)
         {
-            case "f":
-            case "e":
-            case "p":
-            case "x":
-            case "F":
-            case "E":
-            case "P":
-            case "X":
+            case 'f':
+            case 'e':
+            case 'p':
+            case 'x':
+            case 'F':
+            case 'E':
+            case 'P':
+            case 'X':
                 return true;
             default:
                 return false;
